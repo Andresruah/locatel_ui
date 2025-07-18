@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Locatel AI</title>
+  <style>
+    html,body{height:100%;margin:0}
+    body{
+      display:flex;flex-direction:column;justify-content:flex-start;align-items:center;
+      background:#3bb13b;font-family:system-ui,-apple-system,Segoe UI,Helvetica,Arial,sans-serif;
+      color:#fff;text-align:center;
+    }
+    h1{margin:40px 0 10px;font-size:2.8rem;font-weight:700}
+    p {margin:0 0 30px;font-size:1.15rem}
+    .frame-wrapper{width:100%;max-width:650px;height:700px}
+    iframe{width:100%;height:100%;border:none;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+  </style>
+</head>
+<body>
+  <h1>Locatel AI</h1>
+  <p>Hi, I’m Locatel AI—ask me any pharmacy-related question!</p>
+
+  <div class="frame-wrapper">
+    <iframe
+      src="https://huggingface.co/spaces/Andresruah/pharmacy-bot?embed=true"
+      allow="clipboard-read; clipboard-write">
+    </iframe>
+  </div>
+</body>
+</html>

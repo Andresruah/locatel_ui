@@ -2,59 +2,127 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Locatel AI</title>
 
   <style>
-    /* ── page layout ─────────────────────────────── */
+    :root {
+      --green: #3bb13b;
+      --card-bg: #f2f2f2;
+      --shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+      --radius: 14px;
+      --gap: 28px;
+      --maxw: 1200px;
+    }
+
+    /* Page */
     html, body {
       height: 100%;
       margin: 0;
-      background: #3bb13b;                 /* solid green */
-      font-family: system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
+      background: var(--green);
       color: #fff;
-      text-align: center;
+      font-family: system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+    }
+    .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 28px 16px 48px;
     }
 
-    /* ── logo ───────────────────────────────────── */
+    /* Logo (slightly bigger, keep proportions) */
     .logo {
-      width: 300px;                        /* tweak as you like */
-      height: 190px;
-      margin: 20px 0 20px;
-      object-fit: contain;                 /* keeps proportions */
+      display: block;
+      margin: 8px auto 20px;
+      width: 380px;          /* wider than before */
+      max-width: 90vw;       /* responsive cap */
+      height: auto;          /* preserves aspect ratio */
+      object-fit: contain;
     }
 
-    /* iframe wrapper */
-    .frame-wrapper{            /* ← fills 90 % of page width */
-    width: 90%;
-    max-width: 700px;      /* ← wider than 650 px */
-    height: 600px;
-    margin-bottom:60px;
+    /* Two-column layout */
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr; /* mascot left, iframe right */
+      gap: var(--gap);
+      align-items: start;
+      margin-top: 8px;
     }
 
-    iframe {
+    /* Left: mascot image */
+    .mascot-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+    }
+    .mascot {
       width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      max-width: 520px;
+      height: auto;
+      border-radius: 10px;
+      display: block;
+    }
+
+    /* Right: iframe */
+    .frame-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 0;
+      overflow: hidden;
+      min-height: 600px;
+    }
+    .frame-card iframe {
+      width: 100%;
+      height: 680px;     /* adjust height if you want more/less */
+      border: 0;
+      display: block;
+    }
+
+    /* Center small caption text if needed later */
+    .caption {
+      color: rgba(255, 255, 255, 0.85);
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.95rem;
+    }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;   /* stack */
+      }
+      .frame-card iframe {
+        height: 600px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <!-- cropped logo -->
-  <img src="Locatel-logo.png" alt="Locatel logo" class="logo">
+  <div class="container">
+    <!-- Logo -->
+    <img src="Locatel-logo.png" alt="Locatel logo" class="logo" loading="eager" />
 
-  <!-- chatbot -->
-  <div class="frame-wrapper">
-    <iframe
-      src="https://huggingface.co/spaces/Andresruah/pharmacy-bot?embed=true"
-      allow="clipboard-read; clipboard-write">
-    </iframe>
+    <!-- Two-column area: mascot (left) + HF embed (right) -->
+    <div class="layout">
+      <div class="mascot-card">
+        <img src="locatel_mascot.jpeg" alt="Locatel mascot" class="mascot" loading="lazy" />
+      </div>
+
+      <div class="frame-card">
+        <iframe
+          src="https://huggingface.co/spaces/Andresruah/pharmacy-bot?embed=true"
+          allow="clipboard-read; clipboard-write"
+          loading="lazy"
+          title="Locatel AI — Hugging Face"
+        ></iframe>
+      </div>
+    </div>
   </div>
 </body>
 </html>

@@ -17,11 +17,14 @@
 
     /* Page */
     html, body {
-      height: 100%;
-      margin: 0;
-      background: var(--green);
-      color: #fff;
-      font-family: system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+    height: 100%;
+    margin: 0;
+    /* full-bleed background image with a subtle Locatel-green tint for contrast */
+    background:
+        linear-gradient(rgba(59,177,59,0.28), rgba(59,177,59,0.28)),
+        url('bg_locatel.jpeg') center center / cover no-repeat fixed;
+    color: #fff;
+    font-family: system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
     }
     .container {
       max-width: var(--maxw);
@@ -93,12 +96,9 @@
 
     /* Mobile */
     @media (max-width: 900px) {
-      .layout {
-        grid-template-columns: 1fr;   /* stack */
-      }
-      .frame-card iframe {
-        height: 600px;
-      }
+    .layout { grid-template-columns: 1fr; }
+    .frame-card iframe { height: 600px; }
+    html, body { background-attachment: scroll; }  /* <- add this */
     }
   </style>
 </head>
